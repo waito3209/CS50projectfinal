@@ -1,0 +1,32 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        @media only screen and (max-width: 1000px)  {
+            *{  font-size: 115%;
+              }
+              option{  font-size: small;
+              }
+
+
+            body {
+            width: 100%;
+            height: 100%;
+        }
+        input.confirmed{ width: 50px;
+        height: 50px;}
+}
+
+
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<div class="container">{% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

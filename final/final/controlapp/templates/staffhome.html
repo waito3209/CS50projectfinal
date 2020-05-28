@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Staff Home</title>
+{% if user.is_authenticated %}
+    {% if perms.controlapp.control %}
+{% load static %}
+<script>var url = "{% url 'editform' %}";</script>
+<script src="{% static 'control.js' %}"></script>
+    {% endif %}    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if message %}
+        <div class="alert alert-warning" role="alert">
+            {{message}}
+        </div>
+    {% endif %}
+{% if user.is_authenticated %}
+    {% if perms.controlapp.control %}
+
+
+
+
+
+    <br>
+    Hi {{ user.username }}! welcome back
+this are order you need to handle
+<div class="container" id="headcontainer">
+</div><select id="driversekect"></select>
+<div class="container" id="bodycontainer">
+  <!-- Content here -->
+
+</div>
+
+
+
+
+{% else %}
+        <div class="alert alert-warning" role="alert">
+            You have no permission
+        </div>
+    {% endif %}
+
+  <p><a href="{% url 'logout' %}">logout</a></p>
+
+
+
+
+{% else %}
+  <p>Staff are not logged in</p>
+  <a href="{% url 'login' %}">login</a><br>
+
+{% endif %}
+{% endblock %}

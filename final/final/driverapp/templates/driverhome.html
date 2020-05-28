@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>driver Home</title>
+{% if user.is_authenticated %}
+    {% if perms.driverapp.driver %}
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    var username = "{{ user.username }}"
+     $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+
+  </script>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+{% load static %}
+<script src="{% static 'driver.js' %}"></script>
+    {% endif %}    {% endif %}
+{% endblock %}
+{% block content %}
+    {% if message %}
+        <div class="alert alert-warning" role="alert">
+            {{message}}
+        </div>
+    {% endif %}
+{% if user.is_authenticated %}
+    {% if perms.driverapp.driver %}
+    This content will be shown users with can_do_something permission.
+    <br>
+    Hi {{ user.username }}!<br>
+<p>Date: <input type="text" id="datepicker"></p>
+<div  id="bodycontainer">
+</div>
+{% else %}
+        <div class="alert alert-warning" role="alert">
+            You have no permission
+        </div>
+    {% endif %}
+
+  <p><a href="{% url 'logout' %}">logout</a></p>
+
+<!--detail-->
+
+
+{% else %}
+  <p>Staff are not logged in</p>
+  <a href="{% url 'login' %}">login</a><br>
+
+{% endif %}
+{% endblock %}

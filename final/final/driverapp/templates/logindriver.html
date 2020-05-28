@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% if message %}
+<div class="alert alert-warning" role="alert">
+ {{message}}
+</div>
+{% endif %}
+<h2>Login</h2>
+
+<form method="post" action="{% url 'drivermainpage' %}" >
+
+    {% csrf_token %}
+    <label for="id_username">Username:</label>
+        <input type="text" name="username" autofocus="" required="" id="id_username"><br>
+<label for="id_password">Password:</label> <input type="password" name="password" required="" id="id_password"></p>
+  <button type="submit">Login to driver</button>
+</form>
+
+{% endblock %}
